@@ -1519,3 +1519,174 @@ cite {
   .hero-actions { flex-direction: column; align-items: stretch; text-align: center; }
   .btn-primary, .btn-secondary { justify-content: center; }
 }
+
+/* ============================================
+   BINANCE PAYMENT MODAL
+   ============================================ */
+.payment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 43, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.payment-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.payment-modal-content {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  width: 90%;
+  max-width: 450px;
+  padding: 2.5rem;
+  position: relative;
+  transform: translateY(30px) scale(0.95);
+  transition: var(--transition);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-100);
+}
+
+.payment-modal-overlay.active .payment-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--gray-50);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--gray-600);
+  cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  background: #FEE2E2;
+  color: #EF4444;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 4px 8px rgba(243, 186, 47, 0.3));
+}
+
+.modal-header h3 {
+  font-family: var(--font-alt);
+  font-size: 1.8rem;
+  color: #F3BA2F; /* Binance Yellow */
+  font-weight: 800;
+}
+
+.modal-instruction {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.modal-instruction strong {
+  color: var(--dark);
+  font-weight: 800;
+}
+
+.binance-id-box {
+  background: var(--gray-50);
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.binance-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.id-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.binance-id {
+  font-family: var(--font-alt);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: 2px;
+}
+
+.copy-btn {
+  background: var(--dark);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: none;
+  transition: var(--transition);
+}
+
+.copy-btn.copied {
+  background: #10B981;
+}
+
+.payment-steps {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.payment-steps li {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.payment-steps li strong {
+  color: var(--dark);
+}
+
+.payment-steps li:last-child {
+  border-bottom: none;
+}
+
+.confirm-payment-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
