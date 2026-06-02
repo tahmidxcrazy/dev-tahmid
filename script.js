@@ -306,6 +306,90 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
+/* ─── BINANCE PAY MODAL LOGIC ─── */
+const paymentModal = document.getElementById('paymentModal');
+const closeModalBtn = document.getElementById('closeModal');
+const payBtns = document.querySelectorAll('.pay-btn');
+const modalAmount = document.getElementById('modalAmount');
+const modalPlan = document.getElementById('modalPlan');
+const copyIdBtn = document.getElementById('copyIdBtn');
+const binanceIdEl = document.getElementById('binanceId');
+const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+
+let currentSelectedPlan = '';
+
+// Open Modal logic
+payBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Check if toggle is set to yearly
+    const isYearly = document.getElementById('billingToggle').checked;
+    
+    // Get corresponding price
+    const card = btn.closest('.pricing-card');
+    const monthlyPrice = card.querySelector('.monthly-price').textContent;
+    const yearlyPrice = card.querySelector('.yearly-price').textContent;
+    
+    const amount = isYearly ? `$${yearlyPrice}` : `$${monthlyPrice}`;
+    const plan = btn.dataset.plan;
+    
+    currentSelectedPlan = plan;
+    modalAmount.textContent = amount;
+    modalPlan.textContent = plan;
+    
+    paymentModal.classList.add('active');
+  });
+});
+
+// Close Modal
+closeModalBtn.addEventListener('click', () => {
+  paymentModal.classList.remove('active');
+});
+
+// Close on outside click
+paymentModal.addEventListener('click', (e) => {
+  if (e.target === paymentModal) {
+    paymentModal.classList.remove('active');
+  }
+});
+
+// Copy ID to clipboard
+copyIdBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(binanceIdEl.textContent).then(() => {
+    copyIdBtn.textContent = 'Copied!';
+    copyIdBtn.classList.add('copied');
+    setTimeout(() => {
+      copyIdBtn.textContent = 'Copy';
+      copyIdBtn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    alert("Failed to copy. Please select and copy the ID manually.");
+  });
+});
+
+// Confirm Payment -> Redirect to Contact Form
+confirmPaymentBtn.addEventListener('click', () => {
+  paymentModal.classList.remove('active');
+  
+  // Smooth scroll to contact section
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  
+  // Pre-fill the subject line
+  const subjectInput = document.getElementById('subjectInput');
+  subjectInput.value = `Payment Verification: ${currentSelectedPlan} Plan via Binance Pay`;
+  
+  // Highlight the input briefly
+  setTimeout(() => {
+    subjectInput.focus();
+    subjectInput.style.backgroundColor = 'var(--off-white)';
+    setTimeout(() => {
+      subjectInput.blur();
+      subjectInput.style.backgroundColor = 'var(--white)';
+    }, 800);
+  }, 600);
+});
+
 /* ─── SMOOTH NAV SCROLL (close mobile menu) ─── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
@@ -374,3 +458,4 @@ window.addEventListener('load', () => {
     document.body.style.opacity = '1';
   });
 });
+
