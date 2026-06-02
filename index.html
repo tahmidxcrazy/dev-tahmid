@@ -283,7 +283,7 @@
             <li><span class="cross">✗</span> Custom Domain Setup</li>
             <li><span class="cross">✗</span> SEO Optimization</li>
           </ul>
-          <a href="#contact" class="pricing-btn outline magnetic">Get Started</a>
+          <button class="pricing-btn outline magnetic pay-btn" data-plan="Starter">Pay with Binance</button>
         </div>
 
         <!-- Pro (Featured) -->
@@ -309,7 +309,7 @@
             <li><span class="check">✓</span> 2 Revisions</li>
             <li><span class="check">✓</span> 14-Day Delivery</li>
           </ul>
-          <a href="#contact" class="pricing-btn filled magnetic">Get Started</a>
+          <button class="pricing-btn filled magnetic pay-btn" data-plan="Pro">Pay with Binance</button>
         </div>
 
         <!-- Elite -->
@@ -334,7 +334,7 @@
             <li><span class="check">✓</span> 30-Day Delivery</li>
             <li><span class="check">✓</span> 1 Month Free Support</li>
           </ul>
-          <a href="#contact" class="pricing-btn outline magnetic">Get Started</a>
+          <button class="pricing-btn outline magnetic pay-btn" data-plan="Elite">Pay with Binance</button>
         </div>
       </div>
     </div>
@@ -441,6 +441,40 @@
       <p class="footer-copy">© 2026 Tahmid. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- BINANCE PAYMENT MODAL -->
+  <div class="payment-modal-overlay" id="paymentModal">
+    <div class="payment-modal-content">
+      <button class="close-modal" id="closeModal">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon">🟡</div>
+        <h3>Binance Pay</h3>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instruction">Send exactly <strong id="modalAmount">$0</strong> to the Binance ID below to activate the <strong id="modalPlan">Plan</strong>.</p>
+        
+        <div class="binance-id-box">
+          <span class="binance-label">Tahmid's Binance ID</span>
+          <div class="id-row">
+            <span class="binance-id" id="binanceId">1067609011</span>
+            <button class="copy-btn" id="copyIdBtn">Copy</button>
+          </div>
+        </div>
+
+        <ul class="payment-steps">
+          <li>1. Open the <strong>Binance App</strong></li>
+          <li>2. Go to <strong>Pay</strong> > <strong>Send</strong></li>
+          <li>3. Select <strong>Binance ID</strong> & paste the ID</li>
+          <li>4. Enter the amount & complete payment</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary magnetic confirm-payment-btn" id="confirmPaymentBtn">
+          <span>I Have Paid</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
